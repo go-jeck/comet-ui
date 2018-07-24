@@ -4,7 +4,7 @@
 COMET UI is a web page providing users way to change, audit-trail, rollback configurations of application deployment using the provided backend in COMET Backend.
 
 ## System Dependencies
-* [COMET Backend] (https://github.com/go-squads/comet-backend)
+* [COMET Backend](https://github.com/go-squads/comet-backend)
 
 ## Development Environment
 - Ruby 2.5.1
