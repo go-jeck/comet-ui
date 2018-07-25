@@ -1,12 +1,16 @@
-<h1> Dashboard </h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <h1>Dashboard</h1>
+    </div>
+    <div class="col-md-2">
+      <%= button_to("Log Out", "/logout", method: :get, class: "btn btn-default logout-btn") %>
+    </div>
+  </div>
+  <hr>
 
-<ul>
   <% @applications.each do |app| %>
-    <li><%= button_to("#{app.name} + #{app.namespace}", dashboard_index_path, method: :get) %></li>
+    <%= button_to("#{app.name} + #{app.namespace}", dashboard_index_path, method: :get, class: "btn btn-default") %>
+    <br>
   <% end %>
-</ul>
-
-<hr>
-<br>
-<br>
-<%= button_to("Log Out", "/logout", method: :get) %>
+</div>
