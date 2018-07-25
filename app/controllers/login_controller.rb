@@ -11,7 +11,7 @@ class LoginController < ApplicationController
     @response = HTTParty.get('http://localhost:8000/ping')
     json = JSON.parse(@response.body)
     if (json["success"] == "pong")
-      redirect_to login_index_path
+      redirect_to dashboard_index_path
     else
       redirect_to login_index_path
     end

@@ -1,0 +1,7 @@
+<h1> Dashboard </h1>
+
+<ul>
+  <% @applications.each do |app| %>
+    <li><%= button_to("#{app}", dashboard_index_path, method: :get) %></li>
+  <% end %>
+</ul>
