@@ -2,7 +2,8 @@ class DashboardController < ApplicationController
   def index
     @applications = Array.new
     for char in 'a'..'e' do
-      @applications.push(char)
+      app = App.new(char, "dev")
+      @applications.push(app)
     end
   end
 end

@@ -2,6 +2,6 @@
 
 <ul>
   <% @applications.each do |app| %>
-    <li><%= button_to("#{app}", dashboard_index_path, method: :get) %></li>
+    <li><%= button_to("#{app.name} + #{app.namespace}", dashboard_index_path, method: :get) %></li>
   <% end %>
 </ul>
