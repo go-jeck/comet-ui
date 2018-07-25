@@ -5,3 +5,8 @@
     <li><%= button_to("#{app.name} + #{app.namespace}", dashboard_index_path, method: :get) %></li>
   <% end %>
 </ul>
+
+<hr>
+<br>
+<br>
+<%= button_to("Log Out", "/logout", method: :get) %>

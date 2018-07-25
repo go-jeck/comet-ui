@@ -16,4 +16,15 @@ class LoginController < ApplicationController
       redirect_to login_index_path
     end
   end
+
+  def log_out
+    puts "Hello"
+    @response = HTTParty.get('http://localhost:8000/ping')
+    json = JSON.parse(@response.body)
+    if (json["success"] == "pong")
+      redirect_to login_index_path
+    else
+      redirect_to dashboard_index_path
+    end
+  end
 end
