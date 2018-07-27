@@ -1,0 +1,30 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <h1>Configurations </h1>
+    </div>
+    <div class="col-md-2">
+      <%= button_to("Log Out", "/logout", method: :get, class: "btn btn-default logout-btn") %>
+    </div>
+  </div>
+  <hr>
+
+  <div class="row">
+    <p>Application : <%= @app.name %> </p>
+  </div>
+
+  <div class="row">
+    <p>Namespace : <%= @app.namespace %> </p>
+  </div>
+
+  <div class="row">
+    <p>Version : <%= @app.version %> </p>
+  </div>
+
+  <% @app.configurations.each do |config| %>
+    <%= button_to("#{config.key} => #{config.value}", class: "btn btn-default") %>
+    <br>
+  <% end %>
+</div>
+
