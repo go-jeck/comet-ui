@@ -14,6 +14,7 @@ class LoginController < ApplicationController
       :body => {:username => params['username'], :password => params['password']}.to_json)
       json = JSON.parse(@response.body)
       if (json["status"] == 200)
+        cookies[:token] = { :value => json["token"], :expires => Time.now + 3600}
         redirect_to dashboard_index_path
       else
         redirect_to login_index_path
