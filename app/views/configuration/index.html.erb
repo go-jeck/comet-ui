@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="row">
     <div class="col-md-10">
@@ -22,9 +21,17 @@
     <p>Version : <%= @app.version %> </p>
   </div>
 
-  <% @app.configurations.each do |config| %>
-    <%= button_to("#{config.key} => #{config.value}", class: "btn btn-default") %>
-    <br>
-  <% end %>
+  <table style="width: 100%">
+    <tr>
+      <th>Key</th>
+      <th>Value</th>
+    </tr>
+    <% @app.configurations.each do |config| %>
+      <tr>
+        <td><%= config.key %></td>
+        <td><%= config.value %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>
 
