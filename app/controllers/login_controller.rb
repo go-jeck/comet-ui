@@ -1,4 +1,6 @@
 class LoginController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   require 'httparty'
   require 'json'
 
@@ -7,14 +9,17 @@ class LoginController < ApplicationController
   end
 
   def log_in
-    puts "Hello"
-    @response = HTTParty.get('http://localhost:8000/ping')
-    json = JSON.parse(@response.body)
-    if (json["success"] == "pong")
-      redirect_to dashboard_index_path
-    else
-      redirect_to login_index_path
-    end
+    @response = HTTParty.post('http://localhost:8000/login',
+      :headers => {'Content-Type'=>'application/json'},
+      :body => {:username => params['username'], :password => params['password']}.to_json)
+      json = JSON.parse(@response.body)
+      if (json["status"] == 200)
+        redirect_to dashboard_index_path
+      else
+        redirect_to login_index_path
+      end
+
+      puts json['token'].to_s
   end
 
   def log_out
