@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-table {
+table.configs {
   border-collapse: collapse;
   width: 100%;
 
@@ -14,5 +14,15 @@ table {
 
   tr:nth-child(even) {
     background-color: #dddddd
+  }
+}
+
+table.app-info {
+  border-collapse: collapse;
+  width: 70%;
+  font-size: x-large;
+
+  td {
+    padding: 8px;
   }
 }

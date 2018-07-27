@@ -9,19 +9,20 @@
   </div>
   <hr>
 
-  <div class="row">
-    <p>Application : <%= @app.name %> </p>
-  </div>
+  <table class="app-info">
+    <tr>
+      <td>Application</td>
+      <td><%= @app.name %></td>
+    </tr>
+      <td>Namespace</td>
+      <td><%= @app.namespace %></td>
+    <tr>
+      <td>Version </td>
+      <td><%= @app.version %></td>
+    </tr>
+  </table>
 
-  <div class="row">
-    <p>Namespace : <%= @app.namespace %> </p>
-  </div>
-
-  <div class="row">
-    <p>Version : <%= @app.version %> </p>
-  </div>
-
-  <table style="width: 100%">
+  <table class="configs">
     <tr>
       <th>Key</th>
       <th>Value</th>
