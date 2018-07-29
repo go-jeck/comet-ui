@@ -5,6 +5,7 @@
 table.configs {
   border-collapse: collapse;
   width: 100%;
+  margin-bottom: 15px;
 
   td, th {
     border: 1px solid #dddddd;
@@ -14,6 +15,24 @@ table.configs {
 
   tr:nth-child(even) {
     background-color: #dddddd
+  }
+}
+
+table.edit-configs {
+  border-collapse: separate;
+  width: 100%;
+  margin-bottom: 15px;
+
+  td, th {
+    border: 1px solid #eeeeee;
+    text-align: left;
+    padding: 8px;
+
+    input {
+      font-size: 12pt;
+      width: 100%;
+      padding: 8px 4px;
+    }
   }
 }
 

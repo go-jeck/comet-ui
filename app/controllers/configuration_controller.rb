@@ -1,8 +1,9 @@
 class ConfigurationController < ApplicationController
   require 'httparty'
   require 'json'
+  before_action :init
 
-  def index
+  def init
     cfg_response = HTTParty.get("http://localhost:8000/configuration/#{params[:app]}/#{params[:namespace]}")
     json_cfg = JSON.parse(cfg_response.body)
     @app = App.new(params[:app], params[:namespace],json_cfg["version"])
@@ -11,5 +12,11 @@ class ConfigurationController < ApplicationController
       config = Config.new(app_cfg["key"], app_cfg["value"])
       @app.configurations.push(config)
     end
+  end
+  
+  def index
+  end
+
+  def edit
   end
 end

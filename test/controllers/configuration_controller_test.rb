@@ -6,4 +6,8 @@ class ConfigurationControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get edit" do
+    get configuration_edit_url
+    assert_response :success
+  end
 end

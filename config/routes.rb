@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'configuration/index'
+  get 'configuration/edit'
   get 'dashboard/index'
   get 'login/index'
   
