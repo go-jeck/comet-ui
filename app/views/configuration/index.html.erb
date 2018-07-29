@@ -34,6 +34,7 @@
       </tr>
     <% end %>
   </table>
+  <%= button_to("Back", dashboard_index_path, method: :get, class:"btn btn-default") %>
   <%= button_to("Edit", configuration_edit_path, params: {app: @app.name, namespace: @app.namespace}, method: :get, class: "btn btn-default") %>
 </div>
 
