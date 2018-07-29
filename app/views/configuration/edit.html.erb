@@ -22,19 +22,40 @@
     </tr>
   </table>
 
-  <table class="edit-configs">
-    <tr>
-      <th>Key</th>
-      <th>Value</th>
-    </tr>
-    <% @app.configurations.each_with_index do |config, index| %>
-      <tr id="field-<%= index %>">
-        <td><input type="text" name="key-<%= index %>" value="<%= config.key %>"></td>
-        <td><input type="text" name="value-<%= index %>" value="<%= config.value %>"></td>
-      </tr>
-    <% end %>
-  </table>
+  <div class="row">
+    <div class="col-md-11">
+    </div>
+    <div class="col-md-1">
+      <%= button_to("Cancel", configuration_index_path, params: {app: @app.name, namespace: @app.namespace}, method: :get, class: "btn btn-danger") %>
+    </div>
+  </div>
 
-  <%= button_to("Cancel", configuration_index_path, params: {app: @app.name, namespace: @app.namespace}, method: :get, class: "btn btn-default") %>
+  <form method="post" action="/commit">
+    <table class="edit-configs">
+      <tr>
+        <th>Key</th>
+        <th>Value</th>
+      </tr>
+      <% @app.configurations.each_with_index do |config, index| %>
+        <tr id="field-<%= index %>">
+          <td><input type="text" name="key-<%= index %>" value="<%= config.key %>"></td>
+          <td><input type="text" name="value-<%= index %>" value="<%= config.value %>"></td>
+          <td class="del-span"><button type="button" id="btn-field-<%= index %>" class="btn btn-danger del-btn"><i class="glyphicon glyphicon-trash"></i></button></td>
+        </tr>
+      <% end %>
+    </table>
+    <div class="row">
+      <div class="col-md-5">
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-primary add-cfg-btn"><i class="glyphicon glyphicon-plus"></i>&nbsp;Add</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        <input type="submit" class="btn btn-success" value="Commit">
+      </div>
+    </div>
+  </form>
 </div>
 

@@ -34,6 +34,25 @@ table.edit-configs {
       padding: 8px 4px;
     }
   }
+
+  th {
+    padding: 8px;
+    border: 0px;
+  }
+
+  td.del-span {
+    border: 0px;
+    width: 5%;
+  }
+
+  button.del-btn {
+    color: white;
+  }
+}
+
+button.add-cfg-btn {
+  width: 100%;
+  align-content: center;
 }
 
 table.app-info {
