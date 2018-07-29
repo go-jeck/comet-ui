@@ -34,5 +34,7 @@
       </tr>
     <% end %>
   </table>
+
+  <%= button_to("Cancel", configuration_index_path, params: {app: @app.name, namespace: @app.namespace}, method: :get, class: "btn btn-default") %>
 </div>
 
