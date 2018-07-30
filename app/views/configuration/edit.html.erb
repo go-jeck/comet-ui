@@ -1,3 +1,7 @@
+<script>
+  var tr_idx = <%= @app.configurations.length %>
+</script>
+
 <div class="container">
   <div class="row">
     <div class="col-md-10">
@@ -31,7 +35,9 @@
   </div>
 
   <form method="post" action="/commit">
-    <table class="edit-configs">
+    <input type="hidden" name="app" value="<%= @app.name %>">
+    <input type="hidden" name="namespace" value="<%= @app.namespace %>">
+    <table class="edit-configs" id="edit-configs">
       <tr>
         <th>Key</th>
         <th>Value</th>
@@ -58,4 +64,3 @@
     </div>
   </form>
 </div>
-
