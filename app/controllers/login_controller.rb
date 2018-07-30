@@ -17,7 +17,8 @@ class LoginController < ApplicationController
         cookies[:token] = { :value => json["token"], :expires => Time.now + 3600}
         redirect_to dashboard_index_path
       else
-        redirect_to login_index_path
+        #flash[:error] = 'Invalid Username or Password'
+        redirect_to login_index_path, danger:"Invalid Username or Password"
       end
 
       puts json['token'].to_s
