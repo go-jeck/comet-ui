@@ -1,3 +1,21 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+
+$ ->
+  $(".del-btn").on "click", ->
+    delId = $(this).attr("id").substr(4);
+    $("tr#" + delId).remove();
+
+  $(".add-cfg-btn").on "click", ->
+    $("#edit-configs").append($("<tr id=\"field-" + tr_idx + "\">")
+      .append("<td><input type=\"text\" name=\"key-" + tr_idx + "\"></td>")
+      .append("<td><input type=\"text\" name=\"value-" + tr_idx + "\"></td>")
+      .append($("<td class=\"del-span\">")
+        .append($("<button type=\"button\" id=\"btn-field-" + tr_idx + "\" class=\"btn btn-danger del-btn\"><i class=\"glyphicon glyphicon-trash\"></i>").on "click", ->
+          delId = $(this).attr("id").substr(4);
+          $("tr#" + delId).remove();
+        .append("</button>")
+      .append("</td>"))
+    ).append("</tr>"));
+    tr_idx += 1;
