@@ -35,6 +35,8 @@
   </div>
 
   <form method="post" action="/commit">
+    <input type="hidden" name="app" value="<%= @app.name %>">
+    <input type="hidden" name="namespace" value="<%= @app.namespace %>">
     <table class="edit-configs" id="edit-configs">
       <tr>
         <th>Key</th>
