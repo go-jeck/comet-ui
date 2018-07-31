@@ -6,9 +6,9 @@ class DashboardController < ApplicationController
     response = HTTParty.get("http://localhost:8000/application")
     json_response = JSON.parse(response.body)
     @applications = Array.new
-    for app in json_response do
-      for namespace in app["namespace"] do
-        app = App.new(app["application_name"], namespace, 0)
+    for application in json_response do
+      for namespace in application["namespace"] do
+        app = App.new(application["application_name"], namespace, 0)
         @applications.push(app)
       end
     end
