@@ -7,10 +7,8 @@ class DashboardController < ApplicationController
     json_response = JSON.parse(response.body)
     @applications = Array.new
     for application in json_response do
-      for namespace in application["namespace"] do
-        app = App.new(application["application_name"], namespace, 0)
+        app = App.new(application["application_name"], application["namespace"][0], 0)
         @applications.push(app)
-      end
     end
   end
 
