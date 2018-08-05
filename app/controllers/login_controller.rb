@@ -15,10 +15,10 @@ class LoginController < ApplicationController
       json = JSON.parse(@response.body)
       if (json["status"] == 200)
         cookies[:token] = { :value => json["token"], :expires => Time.now + 3600}
-        redirect_to dashboard_index_path
+        redirect_to dashboard_path
       else
         #flash[:error] = 'Invalid Username or Password'
-        redirect_to login_index_path, danger:"Invalid Username or Password"
+        redirect_to login_path, danger:"Invalid Username or Password"
       end
 
       puts json['token'].to_s
@@ -29,9 +29,9 @@ class LoginController < ApplicationController
     @response = HTTParty.get('http://localhost:8000/ping')
     json = JSON.parse(@response.body)
     if (json["success"] == "pong")
-      redirect_to login_index_path
+      redirect_to login_path
     else
-      redirect_to dashboard_index_path
+      redirect_to dashboard_path
     end
   end
 end

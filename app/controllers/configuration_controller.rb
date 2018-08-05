@@ -55,9 +55,9 @@ class ConfigurationController < ApplicationController
     json_response = JSON.parse(response.body)
 
     if (json_response["status"] == 201)
-      redirect_to configuration_index_path(params: {namespace: @app.namespace, app: @app.name}, method: :get)
+      redirect_to configuration_path(params: {namespace: @app.namespace, app: @app.name}, method: :get)
     else
-      redirect_to dashboard_index_path
+      redirect_to dashboard_path
     end
   end
   
