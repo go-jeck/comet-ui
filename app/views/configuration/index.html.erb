@@ -35,7 +35,7 @@
     <% end %>
   </table>
   <div class="col-md-1">
-    <%= button_to("Back", dashboard_index_path, method: :get, class:"btn btn-default") %>
+    <%= button_to("Back", dashboard_path, method: :get, class:"btn btn-default") %>
   </div>
   <div class="col-md-11">
     <%= button_to("Edit", configuration_edit_path, params: {app: @app.name, namespace: @app.namespace}, method: :get, class: "btn btn-primary") %>

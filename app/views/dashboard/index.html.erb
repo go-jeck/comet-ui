@@ -14,7 +14,7 @@
     <% @applications.each do |app| %>
       <div class="row">
         <div class="col-12">
-          <%= button_to("#{app.name}", configuration_index_path,params: {namespace: app.namespace, app: app.name}, method: :get, class: "btn btn-default btn-block") %>
+          <%= button_to("#{app.name}", configuration_path ,params: {namespace: app.namespace, app: app.name}, method: :get, class: "btn btn-default btn-block") %>
         </div>
       </div>
     <% end %>

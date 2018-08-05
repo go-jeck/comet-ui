@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  get 'configuration/index'
+  get 'configuration' => 'configuration#index'
   get 'configuration/edit'
-  get 'dashboard/index'
-  get 'login/index'
+  get 'dashboard' => 'dashboard#index'
+  get 'login' => 'login#index'
   
   get '/logout' => 'login#log_out'
   post '/login' => 'login#log_in'
