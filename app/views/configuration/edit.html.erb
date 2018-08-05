@@ -30,7 +30,7 @@
     <div class="col-md-11">
     </div>
     <div class="col-md-1">
-      <%= button_to("Cancel", configuration_index_path, params: {app: @app.name, namespace: @app.namespace}, method: :get, class: "btn btn-danger") %>
+      <%= button_to("Cancel", configuration_path, params: {app: @app.name, namespace: @app.namespace}, method: :get, class: "btn btn-danger") %>
     </div>
   </div>
 
