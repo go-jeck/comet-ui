@@ -1,32 +1,38 @@
-
-<div class="container centered-content">
-  <div class="row login-buffer-top">
-    <div class="col-md-6">
-      <div class="jumbotron" style="background-color: transparent !important;">
+<div class="row">
+  <div class="col-12 jumbotron text-center" style="background-color: transparent !important;">
         <h1>COMET UI</h1> 
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="modal-dialog" style="margin-bottom:0">
+      <div class="panel-default modal-content">
+        <div class="panel-heading">
+            <h3 class="panel-title">Sign In</h3>
+        </div>
+        <div class="panel-body">
+          <form role="form" method="POST" action="/login">
+            <fieldset>
+              <div class="form-group">
+                  <input class="form-control" placeholder="Username" name="username" type="text" autofocus="">
+              </div>
+              <div class="form-group">
+                  <input class="form-control" placeholder="Password" name="password" type="password" value="">
+              </div>
+              <div class="checkbox">
+                  <label>
+                      <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                  </label>
+              </div>
+              <div class="form-group">
+                <div align="center">
+                  <button type="submit" class="btn btn-default btn-block btn-sm btn-success" value="login">Login</button>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <h1 align="center"> Log In </h1>
-      <hr>
-      
-      <form role="form" method="POST" action="/login">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" class="form-control" />
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" class="form-control" />
-        </div>
-
-        <div class="form-group">
-          <div align="center">
-            <button type="submit" class="btn btn-default" value="login">Log In</button>
-          </div>
-        </div>
-      </form>
-    </div>
   </div>
-  
 </div>
