@@ -4,7 +4,7 @@ class ConfigurationController < ApplicationController
   require 'json'
   before_action :load_app_configs, only: [:index, :edit]
   before_action :load_app_namespace, only: [:commit_configurations]
-
+  before_action :login
   def load_app_configs
     cfg_response = HTTParty.get("http://localhost:8000/configuration/#{params[:app]}/#{params[:namespace]}")
     json_cfg = JSON.parse(cfg_response.body)

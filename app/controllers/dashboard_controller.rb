@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   require 'httparty'
   require 'json'
-
+  before_action :login
   def index
     response = HTTParty.get("http://localhost:8000/application")
     json_response = JSON.parse(response.body)
