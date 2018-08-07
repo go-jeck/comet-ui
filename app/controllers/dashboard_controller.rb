@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
   require 'json'
   before_action :login
   def index
-    response = HTTParty.get("http://localhost:8000/application")
+    response = HTTParty.get("http://localhost:8000/application", :headers => {"Authorization" => cookies[:token]})
     json_response = JSON.parse(response.body)
     @applications = Array.new
     for application in json_response do
