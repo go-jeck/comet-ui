@@ -29,6 +29,7 @@ class LoginController < ApplicationController
     @response = HTTParty.get('http://localhost:8000/ping')
     json = JSON.parse(@response.body)
     if (json["success"] == "pong")
+      cookies.delete(:token)
       redirect_to login_path
     else
       redirect_to dashboard_path
