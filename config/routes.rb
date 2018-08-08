@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'configuration' => 'configuration#index'
   get 'configuration/edit'
-  get 'dashboard' => 'dashboard#index'
+  get 'applications' => 'applications#index'
   get 'login' => 'login#index'
   
   get '/logout' => 'login#log_out'
