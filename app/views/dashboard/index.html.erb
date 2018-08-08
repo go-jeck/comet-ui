@@ -1,22 +1,15 @@
-<div class="container">
+<%= render 'layouts/navbar'%>
+<div class="row">
+  <div class="col-10">
+    <h1 class="text-center">Dashboard</h1>
+  </div>
+</div>
+<hr>
+    
+<% @applications.each do |app| %>
   <div class="row">
-    <div class="col-10">
-      <h1 class="text-center">Dashboard</h1>
-    </div>
-    <div class="col-2 d-flex align-items-center">
-      <%= button_to("Log Out", "/logout", method: :get, class: "btn btn-default logout-btn") %>
+    <div class="col-12">
+      <%= button_to("#{app.name}", configuration_path ,params: {namespace: app.namespace, app: app.name}, method: :get, class: "btn btn-default btn-block") %>
     </div>
   </div>
-  <hr>
-
-
-    
-    <% @applications.each do |app| %>
-      <div class="row">
-        <div class="col-12">
-          <%= button_to("#{app.name}", configuration_path ,params: {namespace: app.namespace, app: app.name}, method: :get, class: "btn btn-default btn-block") %>
-        </div>
-      </div>
-    <% end %>
-  
-</div>
+<% end %>

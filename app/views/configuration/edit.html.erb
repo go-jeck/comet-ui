@@ -1,66 +1,61 @@
 <script>
   var tr_idx = <%= @app.configurations.length %>
 </script>
+<%= render 'layouts/navbar'%>
+<div class="row">
+  <div class="col-md-10">
+    <h1>Configurations </h1>
+  </div>
+</div>
+<hr>
 
-<div class="container">
+<table class="app-info">
+  <tr>
+    <td>Application</td>
+    <td><%= @app.name %></td>
+  </tr>
+    <td>Namespace</td>
+    <td><%= @app.namespace %></td>
+  <tr>
+    <td>Version </td>
+    <td><%= @app.version %></td>
+  </tr>
+</table>
+
+<div class="row">
+  <div class="col-md-11">
+  </div>
+  <div class="col-md-1">
+    <%= button_to("Cancel", configuration_path, params: {app: @app.name, namespace: @app.namespace}, method: :get, class: "btn btn-danger") %>
+  </div>
+</div>
+
+<form method="post" action="/commit">
+  <input type="hidden" name="app" value="<%= @app.name %>">
+  <input type="hidden" name="namespace" value="<%= @app.namespace %>">
+  <table class="edit-configs" id="edit-configs">
+    <tr>
+      <th>Key</th>
+      <th>Value</th>
+    </tr>
+    <% @app.configurations.each_with_index do |config, index| %>
+      <tr id="field-<%= index %>">
+        <td><input type="text" name="key-<%= index %>" value="<%= config.key %>"></td>
+        <td><input type="text" name="value-<%= index %>" value="<%= config.value %>"></td>
+        <td class="del-span"><button type="button" id="btn-field-<%= index %>" class="btn btn-danger del-btn"><i class="glyphicon glyphicon-trash"></i></button></td>
+      </tr>
+    <% end %>
+  </table>
   <div class="row">
-    <div class="col-md-10">
-      <h1>Configurations </h1>
+    <div class="col-md-5">
     </div>
     <div class="col-md-2">
-      <%= button_to("Log Out", "/logout", method: :get, class: "btn btn-default logout-btn") %>
+      <button type="button" class="btn btn-primary add-cfg-btn"><i class="glyphicon glyphicon-plus"></i>&nbsp;Add</button>
     </div>
   </div>
-  <hr>
-
-  <table class="app-info">
-    <tr>
-      <td>Application</td>
-      <td><%= @app.name %></td>
-    </tr>
-      <td>Namespace</td>
-      <td><%= @app.namespace %></td>
-    <tr>
-      <td>Version </td>
-      <td><%= @app.version %></td>
-    </tr>
-  </table>
-
   <div class="row">
-    <div class="col-md-11">
-    </div>
     <div class="col-md-1">
-      <%= button_to("Cancel", configuration_path, params: {app: @app.name, namespace: @app.namespace}, method: :get, class: "btn btn-danger") %>
+      <input type="submit" class="btn btn-success" value="Commit">
     </div>
   </div>
-
-  <form method="post" action="/commit">
-    <input type="hidden" name="app" value="<%= @app.name %>">
-    <input type="hidden" name="namespace" value="<%= @app.namespace %>">
-    <table class="edit-configs" id="edit-configs">
-      <tr>
-        <th>Key</th>
-        <th>Value</th>
-      </tr>
-      <% @app.configurations.each_with_index do |config, index| %>
-        <tr id="field-<%= index %>">
-          <td><input type="text" name="key-<%= index %>" value="<%= config.key %>"></td>
-          <td><input type="text" name="value-<%= index %>" value="<%= config.value %>"></td>
-          <td class="del-span"><button type="button" id="btn-field-<%= index %>" class="btn btn-danger del-btn"><i class="glyphicon glyphicon-trash"></i></button></td>
-        </tr>
-      <% end %>
-    </table>
-    <div class="row">
-      <div class="col-md-5">
-      </div>
-      <div class="col-md-2">
-        <button type="button" class="btn btn-primary add-cfg-btn"><i class="glyphicon glyphicon-plus"></i>&nbsp;Add</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-1">
-        <input type="submit" class="btn btn-success" value="Commit">
-      </div>
-    </div>
-  </form>
-</div>
+</form>

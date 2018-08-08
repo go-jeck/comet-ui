@@ -1,44 +1,39 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-10">
-      <h1>Configurations </h1>
-    </div>
-    <div class="col-md-2">
-      <%= button_to("Log Out", "/logout", method: :get, class: "btn btn-default logout-btn") %>
-    </div>
-  </div>
-  <hr>
-
-  <table class="app-info">
-    <tr>
-      <td>Application</td>
-      <td><%= @app.name %></td>
-    </tr>
-      <td>Namespace</td>
-      <td><%= @app.namespace %></td>
-    <tr>
-      <td>Version </td>
-      <td><%= @app.version %></td>
-    </tr>
-  </table>
-
-  <table class="configs">
-    <tr>
-      <th>Key</th>
-      <th>Value</th>
-    </tr>
-    <% @app.configurations.each do |config| %>
-      <tr>
-        <td><%= config.key %></td>
-        <td><%= config.value %></td>
-      </tr>
-    <% end %>
-  </table>
-  <div class="col-md-1">
-    <%= button_to("Back", dashboard_path, method: :get, class:"btn btn-default") %>
-  </div>
-  <div class="col-md-11">
-    <%= button_to("Edit", configuration_edit_path, params: {app: @app.name, namespace: @app.namespace}, method: :get, class: "btn btn-primary") %>
+<%= render 'layouts/navbar'%>
+<div class="row">
+  <div class="col-md-10">
+    <h1>Configurations </h1>
   </div>
 </div>
+<hr>
 
+<table class="app-info">
+  <tr>
+    <td>Application</td>
+    <td><%= @app.name %></td>
+  </tr>
+    <td>Namespace</td>
+    <td><%= @app.namespace %></td>
+  <tr>
+    <td>Version </td>
+    <td><%= @app.version %></td>
+  </tr>
+</table>
+
+<table class="configs">
+  <tr>
+    <th>Key</th>
+    <th>Value</th>
+  </tr>
+  <% @app.configurations.each do |config| %>
+    <tr>
+      <td><%= config.key %></td>
+      <td><%= config.value %></td>
+    </tr>
+  <% end %>
+</table>
+<div class="col-md-1">
+  <%= button_to("Back", dashboard_path, method: :get, class:"btn btn-default") %>
+</div>
+<div class="col-md-11">
+  <%= button_to("Edit", configuration_edit_path, params: {app: @app.name, namespace: @app.namespace}, method: :get, class: "btn btn-primary") %>
+</div>
