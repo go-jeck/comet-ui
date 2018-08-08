@@ -1,4 +1,4 @@
-class ApplicationsController < ApplicationController
+class AppsController < ApplicationController
   require 'httparty'
   require 'json'
   before_action :login

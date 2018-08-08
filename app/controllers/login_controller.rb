@@ -15,7 +15,7 @@ class LoginController < ApplicationController
       json = JSON.parse(@response.body)
       if (json["status"] == 200)
         cookies[:token] = { :value => json["token"], :expires => Time.now + 3600}
-        redirect_to applications_path
+        redirect_to apps_path
       else
         #flash[:error] = 'Invalid Username or Password'
         redirect_to login_path, danger:"Invalid Username or Password"
