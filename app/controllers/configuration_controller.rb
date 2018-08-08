@@ -6,7 +6,7 @@ class ConfigurationController < ApplicationController
   before_action :load_app_namespace, only: [:commit_configurations]
   before_action :login
   def load_app_configs
-    cfg_response = HTTParty.get("http://localhost:8000/configuration/#{params[:app]}/#{params[:namespace]}")
+    cfg_response = HTTParty.get("http://localhost:8000/configuration/#{params[:app]}/#{params[:namespace]}", :headers => {"Authorization"=> cookies[:token]})
     json_cfg = JSON.parse(cfg_response.body)
     @app = App.new(params[:app], params[:namespace],json_cfg["version"])
 
