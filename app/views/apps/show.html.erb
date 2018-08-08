@@ -1,0 +1,15 @@
+<%= render 'layouts/navbar'%>
+<div class="row">
+  <div class="col-10">
+    <h1 class="text-center">Namespaces</h1>
+  </div>
+</div>
+<hr>
+    
+<% @app["namespaces"].each do |namespace| %>
+  <div class="row">
+    <div class="col-12">
+      <%= button_to(namespace, configuration_path ,params: {namespace: namespace, app: @app['application_name']}, method: :get, class: "btn btn-default btn-block") %>
+    </div>
+  </div>
+<% end %>
