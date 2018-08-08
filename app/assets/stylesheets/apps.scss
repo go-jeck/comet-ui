@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.logout-btn {
-  margin-top: 25px;
+.apps-list-item{
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgb(197, 197, 197);
 }
+a:hover{
+  text-decoration: none !important;
+}
+//  flex flex-column flex-auto b--light-silver bg-white pv2 ph4 bb hover-bg-near-white ember-view
