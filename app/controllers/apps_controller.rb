@@ -18,7 +18,7 @@ class AppsController < ApplicationController
     
     @app = nil 
     for app in json_response do
-      if app["application_name"] == params[:name]
+      if app["application_name"] == params[:app]
         @app = {"application_name" => app["application_name"], "namespaces" => app["namespace"]}
         break
       end

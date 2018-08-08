@@ -7,9 +7,11 @@
 <hr>
     
 <% @app["namespaces"].each do |namespace| %>
-  <div class="row">
-    <div class="col-12">
-      <%= button_to(namespace, configuration_path ,params: {namespace: namespace, app: @app['application_name']}, method: :get, class: "btn btn-default btn-block") %>
+  <%= link_to app_path("#{@app['application_name']}")+"/#{namespace}" do%>
+    <div class="row">
+      <div class="col-12  apps-list-item list-group-item-action">
+          <span><%= namespace%></span>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>

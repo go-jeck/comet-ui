@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  get 'configuration' => 'configuration#index'
   get 'configuration/edit'
   get 'apps' => 'apps#index'
-  get '/apps/:name', to: 'apps#show', as: 'app'
+  get '/apps/:app', to: 'apps#show', as: 'app'
+  get '/apps/:app/:namespace' => 'configuration#index'
   get 'login' => 'login#index'
   get '/logout' => 'login#log_out'
   post '/login' => 'login#log_in'
