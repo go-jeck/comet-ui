@@ -3,6 +3,12 @@
   <div class="col-10">
     <h1 class="text-center">Namespaces</h1>
   </div>
+  <div class="col-2">
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    New Namespace
+  </button>
+  </div>
 </div>
 <hr>
     
@@ -15,3 +21,31 @@
     </div>
   <% end %>
 <% end %>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_tag app_path("new"), method: :post do %>
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create New App</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body row">
+        <div class="offset-1 col-4">
+        <%= label_tag 'Namespace name' %>
+        </div>
+        <div class="col-7 d-flex">
+        <%= text_field_tag "Namespace name" , nil , size: 30%>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <%= submit_tag "Create namespace" , class: "btn btn-primary"%>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
