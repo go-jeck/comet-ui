@@ -35,4 +35,16 @@ class AppsController < ApplicationController
     json = JSON.parse(response.body)
     redirect_to apps_path
   end
+
+  def add_namespace
+    headers = {"Authorization" => cookies[:token], "Content-Type"=> "application/json"}
+    body = {:namespace_name => params['namespace_name']}.to_json
+    puts "namespace name = #{params['namespace_name']}"
+    url = "http://localhost:8000/application/create/#{params['app']}"
+    response = HTTParty.post(url , :headers =>  headers, :body => body)
+    puts "ntab #{response}"
+    json = JSON.parse(response.body)
+    redirect_to app_path(params['app'])
+  end
+  
 end

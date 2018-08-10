@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/apps/:app', to: 'apps#show', as: 'app'
   get '/apps/:app/:namespace' => 'configuration#index'
   post '/apps/new' => 'apps#new'
+  post '/apps/:app/new' => 'apps#add_namespace'
   get 'login' => 'login#index'
   get '/logout' => 'login#log_out'
   post '/login' => 'login#log_in'
