@@ -4,13 +4,13 @@
 <table class="app-info">
   <tr>
     <td>Application</td>
-    <td><%= @app.name %></td>
+    <td><%= params['app'] %></td>
   </tr>
     <td>Namespace</td>
-    <td><%= @app.namespace %></td>
+    <td><%= params['namespace'] %></td>
   <tr>
     <td>Version </td>
-    <td><%= @app.version %></td>
+    <td><%# @app.version %></td>
   </tr>
 </table>
 
@@ -19,10 +19,10 @@
     <th>Key</th>
     <th>Value</th>
   </tr>
-  <% @app.configurations.each do |config| %>
+  <% @configurations.each do |config| %>
     <tr>
-      <td><%= config.key %></td>
-      <td><%= config.value %></td>
+      <td><%= config['key'] %></td>
+      <td><%= config['value'] %></td>
     </tr>
   <% end %>
 </table>
@@ -30,5 +30,5 @@
   <%= button_to("Back", apps_path, method: :get, class:"btn btn-default") %>
 </div>
 <div class="col-md-11">
-  <%= button_to("Edit", configuration_edit_path, params: {app: @app.name, namespace: @app.namespace}, method: :get, class: "btn btn-primary") %>
+  <%= button_to("Edit", configuration_edit_path, params: {app: params['app'], namespace: params['namespace']}, method: :get, class: "btn btn-primary") %>
 </div>
