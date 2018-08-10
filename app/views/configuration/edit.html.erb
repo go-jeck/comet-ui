@@ -1,5 +1,5 @@
 <script>
-  var tr_idx = <%= @app.configurations.length %>
+  var tr_idx = <%= @configurations.length %>
 </script>
 <%= render 'layouts/navbar'%>
 <div class="row">
@@ -12,33 +12,26 @@
 <table class="app-info">
   <tr>
     <td>Application</td>
-    <td><%= @app.name %></td>
+    <td><%= params['app'] %></td>
   </tr>
     <td>Namespace</td>
-    <td><%= @app.namespace %></td>
+    <td><%= params['namespace'] %></td>
   <tr>
     <td>Version </td>
-    <td><%= @app.version %></td>
+    <td><%= @active_version %></td>
   </tr>
 </table>
 
-<div class="row">
-  <div class="col-md-11">
-  </div>
-  <div class="col-md-1">
-    <%= button_to("Cancel", app_path("#{@app.name}")+"/#{@app.namespace}", method: :get, class: "btn btn-danger") %>
-  </div>
-</div>
 
 <form method="post" action="/commit">
-  <input type="hidden" name="app" value="<%= @app.name %>">
-  <input type="hidden" name="namespace" value="<%= @app.namespace %>">
+  <input type="hidden" name="app" value="<%= params['app'] %>">
+  <input type="hidden" name="namespace" value="<%= params['namespace'] %>">
   <table class="edit-configs" id="edit-configs">
     <tr>
       <th>Key</th>
       <th>Value</th>
     </tr>
-    <% @app.configurations.each_with_index do |config, index| %>
+    <% @aconfigurations.each_with_index do |config, index| %>
       <tr id="field-<%= index %>">
         <td><input type="text" name="key-<%= index %>" value="<%= config.key %>"></td>
         <td><input type="text" name="value-<%= index %>" value="<%= config.value %>"></td>
@@ -57,5 +50,11 @@
     <div class="col-md-1">
       <input type="submit" class="btn btn-success" value="Commit">
     </div>
+  <div class="row">
+    <div class="col-md-1">
+      <%= button_to("Cancel", app_path("#{params['app']}")+"/#{params['namespace']}", method: :get, class: "btn btn-danger") %>
+    </div>
+  </div>
+
   </div>
 </form>
