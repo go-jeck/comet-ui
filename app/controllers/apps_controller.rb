@@ -8,7 +8,7 @@ class AppsController < ApplicationController
     json_response = JSON.parse(response.body)
     @applications = Array.new
     for application in json_response do
-      app = App.new(application["application_name"], application["namespace"][0], 0)
+      app = App.new(application["application_name"], nil, 0)
       @applications.push(app)
     end
   end
@@ -23,5 +23,16 @@ class AppsController < ApplicationController
         break
       end
     end
+  end
+
+  def new 
+    headers = {"Authorization" => cookies[:token], "Content-Type"=> "application/json"}
+    body = {:app_name => params['app_name']}.to_json
+    puts "app name = #{params['app_name']}"
+    url = "http://localhost:8000/application/create"
+    response = HTTParty.post(url , :headers =>  headers, :body => body)
+    puts "ntab #{response}"
+    json = JSON.parse(response.body)
+    redirect_to apps_path
   end
 end
