@@ -11,6 +11,7 @@
   </div>
 </div>
 <hr>
+<% if @app["namespaces"]%>
 <% @app["namespaces"].each do |namespace| %>
   <%= link_to app_path("#{@app['application_name']}")+"/#{namespace}" do%>
     <div class="row">
@@ -19,6 +20,9 @@
       </div>
     </div>
   <% end %>
+<% end %>
+<%else%>
+ <%=render html: "you don't have any namespace"%> 
 <% end %>
 
 <!-- Modal -->

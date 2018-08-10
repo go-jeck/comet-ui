@@ -20,6 +20,7 @@ class AppsController < ApplicationController
     for app in json_response do
       if app["application_name"] == params[:app]
         @app = {"application_name" => app["application_name"], "namespaces" => app["namespace"]}
+        puts "WKWKKW#{@app}"
         break
       end
     end
