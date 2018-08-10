@@ -1,0 +1,13 @@
+<h3>
+  <%= link_to content_tag(:span, "Applications"), apps_path%>
+  <% if params['app']!=nil %>
+    <i class="arrow right"></i>
+  <% end %>
+  <% if params['namespace']!=nil %>
+    <%= link_to content_tag(:span, "#{params['app']}"), app_path(params['app'])%>
+    <i class="arrow right"></i>
+    <%=  content_tag(:span, "#{params['namespace']}") %>
+  <% else%>
+    <%= content_tag(:span, "#{params['app']}") %>
+  <% end %>
+</h3>

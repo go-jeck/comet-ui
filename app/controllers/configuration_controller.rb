@@ -3,8 +3,8 @@ class ConfigurationController < ApplicationController
   require 'httparty'
   require 'json'
   before_action :login
-  before_action :load_app_configs, only: [:index, :edit]
-  before_action :load_app_namespace, only: [:commit_configurations]
+  # before_action :load_app_configs, only: [:index, :edit]
+  # before_action :load_app_namespace, only: [:commit_configurations]
   def load_app_configs
     cfg_response = HTTParty.get("http://localhost:8000/configuration/#{params[:app]}/#{params[:namespace]}", :headers => {"Authorization" => cookies[:token]})
     json_cfg = JSON.parse(cfg_response.body)
@@ -62,6 +62,7 @@ class ConfigurationController < ApplicationController
   end
   
   def index
+    load_app_configs
   end
 
   def edit
