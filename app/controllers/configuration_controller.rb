@@ -6,9 +6,9 @@ class ConfigurationController < ApplicationController
   # before_action :load_app_namespace, only: [:commit_configurations]
 
   def load_app_namespace
-    cfg_response = HTTParty.get("http://localhost:8000/configuration/#{params[:app]}/#{params[:namespace]}")
+    cfg_response = HTTParty.get("http://localhost:8000/configuration/#{params[:app_name]}/#{params[:namespace_name]}")
     json_cfg = JSON.parse(cfg_response.body)
-    @app = App.new(params[:app], params[:namespace],json_cfg["version"])
+    @app = App.new(params[:app_name], params[:namespace_name],json_cfg["version"])
   end
 
   def commit_configurations
@@ -16,8 +16,8 @@ class ConfigurationController < ApplicationController
     index_array = Array.new
     
     req_body = {
-      "appName" => "#{params[:app]}",
-      "namespace" => "#{params[:namespace]}",
+      "appName" => "#{params[:app_name]}",
+      "namespace" => "#{params[:namespace_name]}",
       "data" => []
     }
 
@@ -39,14 +39,13 @@ class ConfigurationController < ApplicationController
 
     response = HTTParty.post("http://localhost:8000/configuration",
       :body => req_body.to_json,
-      :headers => { 'Content-Type' => 'application/json' })
+      :headers => { 'Content-Type' => 'application/json' , "Authorization" => cookies['token']})
 
     json_response = JSON.parse(response.body)
-
     if (json_response["status"] == 201)
-      redirect_to configuration_path(params: {namespace: @app.namespace, app: @app.name}, method: :get)
+      redirect_to configurations_path(params[:app_name],params[:namespace_name])
     else
-      redirect_to apps_path
+      redirect_to apps_path, danger:"Add new configuration fail"
     end
   end
   
