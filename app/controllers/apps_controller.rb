@@ -36,7 +36,6 @@ class AppsController < ApplicationController
     response = HTTParty.post(url , :headers =>  headers, :body => body)
     puts "ntab #{response}"
     json = JSON.parse(response.body)
-    render html: json;
     redirect_to apps_path
   end
 
