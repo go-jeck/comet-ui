@@ -31,10 +31,10 @@
       <th>Key</th>
       <th>Value</th>
     </tr>
-    <% @aconfigurations.each_with_index do |config, index| %>
+    <% @configurations.each_with_index do |config, index| %>
       <tr id="field-<%= index %>">
-        <td><input type="text" name="key-<%= index %>" value="<%= config.key %>"></td>
-        <td><input type="text" name="value-<%= index %>" value="<%= config.value %>"></td>
+        <td><input type="text" name="key-<%= index %>" value="<%= config['key'] %>"></td>
+        <td><input type="text" name="value-<%= index %>" value="<%= config['value'] %>"></td>
         <td class="del-span"><button type="button" id="btn-field-<%= index %>" class="btn btn-danger del-btn"><i class="glyphicon glyphicon-trash"></i></button></td>
       </tr>
     <% end %>

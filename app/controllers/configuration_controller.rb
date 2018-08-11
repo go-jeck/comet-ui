@@ -60,6 +60,11 @@ class ConfigurationController < ApplicationController
   end
 
   def edit
-
+    url = "http://localhost:8000/application/#{params['app']}/namespaces/#{params['namespace']}/configurations"
+    headers = {"Authorization" => cookies['token']}
+    response = HTTParty.get(url, :headers => headers)
+    response_body = JSON.parse(response.body)
+    @configurations = response_body['configurations']
+    @active_version = response_body['version']
   end
 end
