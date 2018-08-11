@@ -11,7 +11,7 @@
   </div>
 </div>
 <hr>
-
+<% unless @applications.nil? %>
 <% @applications.each do |app| %>
   <%= link_to app_path(app.name) do%>
     <div class="row">
@@ -20,6 +20,10 @@
       </div>
     </div>
   <% end %>
+<% end %>
+<% else %>
+  <p>You don't have any app, let's create your first app!</p>
+  <%= @applications%>
 <% end %>
 
 

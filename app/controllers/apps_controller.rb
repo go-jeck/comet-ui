@@ -4,12 +4,14 @@ class AppsController < ApplicationController
   before_action :login
   def index
     response = HTTParty.get("http://localhost:8000/application", :headers => {"Authorization" => cookies[:token]})
-    
     json_response = JSON.parse(response.body)
-    @applications = Array.new
-    for application in json_response do
-      app = App.new(application["application_name"], nil, 0)
-      @applications.push(app)
+    
+    unless json_response.nil?
+      @applications = Array.new
+      for application in json_response do
+        app = App.new(application["application_name"], nil, 0)
+        @applications.push(app)
+      end
     end
   end
   def show
@@ -34,6 +36,7 @@ class AppsController < ApplicationController
     response = HTTParty.post(url , :headers =>  headers, :body => body)
     puts "ntab #{response}"
     json = JSON.parse(response.body)
+    render html: json;
     redirect_to apps_path
   end
 
