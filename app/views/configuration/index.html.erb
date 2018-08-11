@@ -4,10 +4,10 @@
 <table class="app-info">
   <tr>
     <td>Application</td>
-    <td><%= params['app'] %></td>
+    <td><%= params[:app_name] %></td>
   </tr>
     <td>Namespace</td>
-    <td><%= params['namespace'] %></td>
+    <td><%= params[:namespace_name] %></td>
   <tr>
     <td>Version </td>
     <td><%= @active_version %></td>
@@ -30,5 +30,5 @@
   <%= button_to("Back", apps_path, method: :get, class:"btn btn-default") %>
 </div>
 <div class="col-md-11">
-  <%= button_to("Edit", configuration_edit_path, params: {app: params['app'], namespace: params['namespace']}, method: :get, class: "btn btn-primary") %>
+  <%= button_to("Edit", edit_configuration_path, params: {app: params[:app_name], namespace: params[:namespace_name]}, method: :get, class: "btn btn-primary") %>
 </div>

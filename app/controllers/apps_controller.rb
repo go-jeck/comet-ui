@@ -18,7 +18,7 @@ class AppsController < ApplicationController
     
     @app = nil 
     for app in json_response do
-      if app["application_name"] == params[:app]
+      if app["application_name"] == params[:app_name]
         @app = {"application_name" => app["application_name"], "namespaces" => app["namespace"]}
         puts "WKWKKW#{@app}"
         break
@@ -28,9 +28,9 @@ class AppsController < ApplicationController
 
   def new 
     headers = {"Authorization" => cookies[:token], "Content-Type"=> "application/json"}
-    body = {:app_name => params['app_name']}.to_json
-    puts "app name = #{params['app_name']}"
-    url = "http://localhost:8000/application/create"
+    body = {:app_name => params[:app_name]}.to_json
+    puts "app name = #{params[:app_name]}"
+    url = "http://localhost:8000/application"
     response = HTTParty.post(url , :headers =>  headers, :body => body)
     puts "ntab #{response}"
     json = JSON.parse(response.body)
@@ -39,13 +39,14 @@ class AppsController < ApplicationController
 
   def add_namespace
     headers = {"Authorization" => cookies[:token], "Content-Type"=> "application/json"}
-    body = {:namespace_name => params['namespace_name']}.to_json
-    puts "namespace name = #{params['namespace_name']}"
-    url = "http://localhost:8000/application/create/#{params['app']}"
+    body = {:namespace_name => params[:namespace_name]}.to_json
+    puts "namespace name = #{params[:namespace_name]}"
+    url = "http://localhost:8000/application/#{params[:app_name]}"
+    
     response = HTTParty.post(url , :headers =>  headers, :body => body)
-    puts "ntab #{response}"
+    puts "ntab #{params[:app_name]}"
     json = JSON.parse(response.body)
-    redirect_to app_path(params['app'])
+    redirect_to app_path(params[:app_name])
   end
   
 end

@@ -1,15 +1,20 @@
 Rails.application.routes.draw do
-  get 'configuration/edit'
-  get 'apps' => 'apps#index'
-  get '/apps/:app', to: 'apps#show', as: 'app'
-  get '/apps/:app/:namespace' => 'configuration#index'
-  post '/apps/new' => 'apps#new'
-  post '/apps/:app/new' => 'apps#add_namespace'
-  get 'login' => 'login#index'
-  get '/logout' => 'login#log_out'
+  root 'apps#index'
+  
+  get '/login', to: 'login#index', as: 'login'
+  get '/logout', to: 'login#log_out', as: 'logout'
+  
+  get '/apps', to: 'apps#index', as: 'apps'
+  get '/apps/:app_name', to: 'apps#show', as: 'app'
+  get '/apps/:app_name/:namespace_name', to: 'configuration#index', as: 'configurations'
+  
+  get '/apps/:app_name/:namespace_name/configurations/edit', to: 'configuration#edit', as: 'edit_configuration'
+  
   post '/login' => 'login#log_in'
+  
+  post '/apps/new' => 'apps#new'
+  post '/apps/:app_name/new' => 'apps#add_namespace'
+  
   post '/commit' => 'configuration#commit_configurations'
 
-  root 'apps#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
