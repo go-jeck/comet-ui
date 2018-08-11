@@ -51,7 +51,7 @@ class ConfigurationController < ApplicationController
   end
   
   def index
-    url = "http://localhost:8000/application/#{params['app_name']}/namespaces/#{params['namespace_name']}/configurations"
+    url = "http://localhost:8000/application/#{params[:app_name]}/namespaces/#{params[:namespace_name]}/configurations"
     headers = {"Authorization" => cookies['token']}
     response = HTTParty.get(url, :headers => headers)
     response_body = JSON.parse(response.body)

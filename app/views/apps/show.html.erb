@@ -13,7 +13,7 @@
 <hr>
 <% if @app["namespaces"]%>
 <% @app["namespaces"].each do |namespace| %>
-  <%= link_to app_path("#{@app['application_name']}")+"/#{namespace}" do%>
+  <%= link_to configurations_path(params[:app_name], namespace) do%>
     <div class="row">
       <div class="col-12  apps-list-item list-group-item-action">
           <span><%= namespace%></span>
