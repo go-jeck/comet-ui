@@ -1,5 +1,5 @@
 <script>
-  var tr_idx = <%= @configurations.length %>
+  var tr_idx = 7
 </script>
 <%= render 'layouts/navbar'%>
 <div class="row">
@@ -31,12 +31,14 @@
       <th>Key</th>
       <th>Value</th>
     </tr>
+    <% unless @configurations.nil?%>
     <% @configurations.each_with_index do |config, index| %>
       <tr id="field-<%= index %>">
         <td><input type="text" name="key-<%= index %>" value="<%= config['key'] %>"></td>
         <td><input type="text" name="value-<%= index %>" value="<%= config['value'] %>"></td>
         <td class="del-span"><button type="button" id="btn-field-<%= index %>" class="btn btn-danger del-btn"><i class="glyphicon glyphicon-trash"></i></button></td>
       </tr>
+    <% end %>
     <% end %>
   </table>
   <div class="row">

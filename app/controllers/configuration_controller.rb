@@ -54,9 +54,7 @@ class ConfigurationController < ApplicationController
     headers = {"Authorization" => cookies['token']}
     response = HTTParty.get(url, :headers => headers)
     response_body = JSON.parse(response.body)
-    unless response_body.nil?
-      @configurations = response_body['configurations']
-    end
+    @configurations = response_body['configurations']
     @active_version = response_body['version']
   end
 

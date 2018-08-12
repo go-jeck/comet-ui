@@ -1,5 +1,12 @@
 <%= render 'layouts/navbar'%>
-<%= render 'layouts/path'%>
+<div class="row">
+  <div class="col-10">
+    <%= render 'layouts/path'%>
+  </div>
+  <div class="col-2">
+    <%= link_to "Edit Config",edit_configuration_path(params[:app_name],params[:namespace_name]), class: "btn btn-primary" %>
+  </div>
+</div>
 <hr>
 <table class="app-info">
   <tr>
@@ -14,24 +21,19 @@
   </tr>
 </table>
 
-<table class="configs">
-  <tr>
-    <th>Key</th>
-    <th>Value</th>
-  </tr>
-  <% unless @configurations.nil?%>
-  <% @configurations.each do |config| %>
+<% unless @configurations.nil?%>
+  <table class="configs">
     <tr>
-      <td><%= config['key'] %></td>
-      <td><%= config['value'] %></td>
+      <th>Key</th>
+      <th>Value</th>
     </tr>
-  <% end %>
-
-  <% end %>
-</table>
-<div class="col-md-1">
-  <%= button_to("Back", apps_path, method: :get, class:"btn btn-default") %>
-</div>
-<div class="col-md-11">
-  <%= button_to("Edit", edit_configuration_path, params: {app: params[:app_name], namespace: params[:namespace_name]}, method: :get, class: "btn btn-primary") %>
-</div>
+    <% @configurations.each do |config| %>
+      <tr>
+        <td><%= config['key'] %></td>
+        <td><%= config['value'] %></td>
+      </tr>
+    <% end %>
+  </table>
+  <% else %>
+  <h4 class="text-center text-danger">You don't have any config. Let's create one</h4>
+<% end %>
