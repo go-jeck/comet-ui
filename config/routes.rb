@@ -6,10 +6,12 @@ Rails.application.routes.draw do
   
   get '/apps', to: 'apps#index', as: 'apps'
   get '/apps/:app_name', to: 'apps#show', as: 'app'
+  
   get '/apps/:app_name/:namespace_name', to: 'configuration#index', as: 'configurations'
-  
   get '/apps/:app_name/:namespace_name/configurations/edit', to: 'configuration#edit', as: 'edit_configuration'
-  
+
+  get '/apps/:app_name/:namespace_name/histories', to: 'histories#index', as: 'histories'
+
   post '/login' => 'login#log_in'
   
   post '/apps/new' => 'apps#new'
