@@ -4,28 +4,13 @@ class AppsController < ApplicationController
   before_action :login
   def index
     response = HTTParty.get("http://localhost:8000/application", :headers => {"Authorization" => cookies[:token]})
-    json_response = JSON.parse(response.body)
-    
-    unless json_response.nil?
-      @applications = Array.new
-      for application in json_response do
-        app = App.new(application["application_name"], nil, 0)
-        @applications.push(app)
-      end
-    end
+    @applications = JSON.parse(response.body)
   end
+
   def show
-    response = HTTParty.get("http://localhost:8000/application", :headers => {"Authorization" => cookies[:token]})
+    response = HTTParty.get("http://localhost:8000/application/#{params[:app_name]}/namespaces", :headers => {"Authorization" => cookies[:token]})
     json_response = JSON.parse(response.body)
-    
-    @app = nil 
-    for app in json_response do
-      if app["application_name"] == params[:app_name]
-        @app = {"application_name" => app["application_name"], "namespaces" => app["namespace"]}
-        puts "WKWKKW#{@app}"
-        break
-      end
-    end
+    @namespaces = json_response[0]["namespace"]
   end
 
   def new 

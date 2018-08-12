@@ -12,18 +12,17 @@
 </div>
 <hr>
 <% unless @applications.nil? %>
-<% @applications.each do |app| %>
-  <%= link_to app_path(app.name) do%>
-    <div class="row">
-      <div class="col-12  apps-list-item list-group-item-action">
-          <span><%= app.name%></span>
+  <% @applications.each do |app| %>
+    <%= link_to app_path(app['application_name']) do%>
+      <div class="row">
+        <div class="col-12  apps-list-item list-group-item-action">
+            <span><%= app['application_name']%></span>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
-<% end %>
 <% else %>
   <p>You don't have any app, let's create your first app!</p>
-  <%= @applications%>
 <% end %>
 
 

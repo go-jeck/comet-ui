@@ -11,8 +11,8 @@
   </div>
 </div>
 <hr>
-<% if @app["namespaces"]%>
-<% @app["namespaces"].each do |namespace| %>
+<% unless @namespaces.nil?%>
+<% @namespaces.each do |namespace| %>
   <%= link_to configurations_path(params[:app_name], namespace) do%>
     <div class="row">
       <div class="col-12  apps-list-item list-group-item-action">
@@ -22,7 +22,7 @@
   <% end %>
 <% end %>
 <%else%>
- <%=render html: "you don't have any namespace"%> 
+ <%=render html: "you don't have any namespace, let's create your first namespace"%> 
 <% end %>
 
 <!-- Modal -->
