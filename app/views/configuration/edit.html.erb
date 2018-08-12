@@ -23,9 +23,9 @@
 </table>
 
 
-<form method="post" action="/commit">
-  <input type="hidden" name="app" value="<%= params['app'] %>">
-  <input type="hidden" name="namespace" value="<%= params['namespace'] %>">
+<form method="post" action=".">
+  <input type="hidden" name="app" value="<%= params[:app_name] %>">
+  <input type="hidden" name="namespace" value="<%= params[:namespace_name] %>">
   <table class="edit-configs" id="edit-configs">
     <tr>
       <th>Key</th>

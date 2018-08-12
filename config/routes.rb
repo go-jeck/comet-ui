@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   post '/apps/new' => 'apps#new'
   post '/apps/:app_name/new' => 'apps#add_namespace'
   
-  post '/commit' => 'configuration#commit_configurations'
+  post '/apps/:app_name/:namespace_name/configurations/' => 'configuration#commit_configurations'
 
 end
