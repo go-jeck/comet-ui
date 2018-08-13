@@ -66,4 +66,18 @@ class ConfigurationController < ApplicationController
     @configurations = response_body['configurations']
     @active_version = response_body['version']
   end
+
+  def rollback
+    url = "http://localhost:8000/configuration/rollback"
+    headers = {"Authorization" => cookies['token']}
+    body = {
+            "application_name" => "#{params[:app_name]}",
+            "namespace_name" => "#{params[:namespace_name]}",
+            "version" => params['version'].to_i
+            }
+    puts "HAHAHAHA#{body}"
+    response = HTTParty.post(url, :headers => headers, :body => body.to_json)
+    # render :html response
+  end
+
 end

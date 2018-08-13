@@ -35,5 +35,10 @@
   <%= history['created']%>
   <%= history['changed']%>
   <%= history['deleted']%>
+  <%= form_tag 'rollback' do  %>
+    <%= hidden_field_tag 'version', history['successor_version'] %>
+    <%= submit_tag "rollback" , class: "btn btn-primary"%>
+  <% end %>
+  <%# button_to "rollback" ,"configurations/rollback" %>
 </div>
 <% end %>

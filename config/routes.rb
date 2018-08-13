@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   
   post '/apps/:app_name/:namespace_name/configurations/' => 'configuration#commit_configurations'
 
+  post '/apps/:app_name/:namespace_name/rollback' => 'configuration#rollback'
 end
