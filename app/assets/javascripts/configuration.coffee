@@ -5,8 +5,7 @@
 del_field_with_button =(buttonId) ->
   delId = buttonId.substr(4)
   $("tr#" + delId).remove();
-
-$ ->
+$(document).on 'turbolinks:load', ->
   $(".del-btn").on "click", ->
     del_field_with_button($(this).attr("id"))
 
