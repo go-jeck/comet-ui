@@ -29,8 +29,11 @@
   <div class="f5 gray">
     <time id="ember1630" title="2018-07-19 03:53:34 UTC" datetime="2018-07-19T03:53:34Z" class="timeago ember-view"><%= history['created_at']%>
 </time>
-      ·
-      v<%= history['successor_version']%></div>
-</div>
+      from v<%= history['predecessor_version']%>
+      to v<%= history['successor_version']%></div>
+  </div>
+  <%= history['created']%>
+  <%= history['changed']%>
+  <%= history['deleted']%>
 </div>
 <% end %>
