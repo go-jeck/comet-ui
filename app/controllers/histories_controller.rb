@@ -9,7 +9,7 @@ class HistoriesController < ApplicationController
     url = "http://localhost:8000/configuration/history/#{params[:app_name]}/#{params[:namespace_name]}"
     response = HTTParty.get(url, :headers => headers)
     @histories = JSON.parse(response.body)
-    render html: @histories
+    # render html: @histories
   end
 
 end
