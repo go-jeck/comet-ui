@@ -6,39 +6,29 @@
 </div>
 <hr>
 <%= render 'layouts/config_menu'%>
+<% unless @histories.nil? %>
+  <% @histories.each do |history|%>
 
-<% @histories.each do |history|%>
-<div id="ember1627" class="flex bb pv3 b--light-silver activity-item ember-view"><div class="pt1 mr3 nowrap">
-    <div id="ember1628" class="relative dib ember-view">
-    <svg style="width: 28px; height: 28px;" data-test-target="malibu-icon" data-test-icon-name="deploy-28" class="icon malibu-icon fill-dark-gray">
-      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#deploy-28">
-        <title></title>
-      </use>
-    </svg>
-  </div>
-  <span id="ember1629" style="width:24px; height:24px" class="ml2 gravatar-icon br-100 ember-view" data-original-title="" title=""><img src="https://gravatar.com/avatar/d9fe3dc5a5c38faf9e33d874d9bff249?s=96&amp;d=https://dashboard.heroku.com%2Fimages%2Fstatic%2Fninja-avatar-48x48.png" alt="ibamibrahim0@gmail.com">
-</span>
-</div>
+  <div class="flex flex-column lh-copy">
+    <div class="f5">
+      <span class="b"><%= history['username']%></span>
+    </div>
 
-<div class="flex flex-column lh-copy">
-  <div class="f5">
-    <span class="b"><%= history['username']%></span>
-    <span>Deployed <code>4a990636</code></span>
+    <div class="f5 gray">
+      <time id="ember1630" title="2018-07-19 03:53:34 UTC" datetime="2018-07-19T03:53:34Z" class="timeago ember-view"><%= history['created_at']%>
+  </time>
+        from v<%= history['predecessor_version']%>
+        to v<%= history['successor_version']%>
+    </div>
+    <%= history['created']%>
+    <%= history['changed']%>
+    <%= history['deleted']%>
+    <%= form_tag 'rollback' do  %>
+      <%= hidden_field_tag 'version', history['successor_version'] %>
+      <%= submit_tag "rollback" , class: "btn btn-primary"%>
+    <% end %>
   </div>
-
-  <div class="f5 gray">
-    <time id="ember1630" title="2018-07-19 03:53:34 UTC" datetime="2018-07-19T03:53:34Z" class="timeago ember-view"><%= history['created_at']%>
-</time>
-      from v<%= history['predecessor_version']%>
-      to v<%= history['successor_version']%></div>
-  </div>
-  <%= history['created']%>
-  <%= history['changed']%>
-  <%= history['deleted']%>
-  <%= form_tag 'rollback' do  %>
-    <%= hidden_field_tag 'version', history['successor_version'] %>
-    <%= submit_tag "rollback" , class: "btn btn-primary"%>
   <% end %>
-  <%# button_to "rollback" ,"configurations/rollback" %>
-</div>
+  <% else %>
+  <h3>You don't have any history</h3>
 <% end %>

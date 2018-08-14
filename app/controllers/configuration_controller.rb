@@ -3,23 +3,12 @@ class ConfigurationController < ApplicationController
   require 'httparty'
   require 'json'
   before_action :login
-  # before_action :load_app_namespace, only: [:commit_configurations]
-
-  def load_app_namespace
-    cfg_response = HTTParty.get("http://localhost:8000/configuration/#{params[:app_name]}/#{params[:namespace_name]}")
-    json_cfg = JSON.parse(cfg_response.body)
-    @app = App.new(params[:app_name], params[:namespace_name],json_cfg["version"])
-  end
 
   def commit_configurations
     config_array = Array.new
     index_array = Array.new
     
-    req_body = {
-      "appName" => "#{params[:app_name]}",
-      "namespace" => "#{params[:namespace_name]}",
-      "data" => []
-    }
+    req_body = []
 
     params.each do |key, value|
       if !key["key-"].nil?
@@ -34,10 +23,9 @@ class ConfigurationController < ApplicationController
     end
 
     config_array.each do |config|
-      req_body["data"].push({"key": config.key,"value": config.value})
+      req_body.push({"key": config.key,"value": config.value})
     end
-
-    response = HTTParty.post("http://localhost:8000/configuration",
+    response = HTTParty.post("http://localhost:8000/applications/#{params[:app_name]}/namespaces/#{params[:namespace_name]}/configurations",
       :body => req_body.to_json,
       :headers => { 'Content-Type' => 'application/json' , "Authorization" => cookies['token']})
 
@@ -50,7 +38,7 @@ class ConfigurationController < ApplicationController
   end
   
   def index
-    url = "http://localhost:8000/application/#{params[:app_name]}/namespaces/#{params[:namespace_name]}/configurations"
+    url = "http://localhost:8000/applications/#{params[:app_name]}/namespaces/#{params[:namespace_name]}/configurations/latest"
     headers = {"Authorization" => cookies['token']}
     response = HTTParty.get(url, :headers => headers)
     response_body = JSON.parse(response.body)
@@ -59,7 +47,7 @@ class ConfigurationController < ApplicationController
   end
 
   def edit
-    url = "http://localhost:8000/application/#{params[:app_name]}/namespaces/#{params[:namespace_name]}/configurations"
+    url = "http://localhost:8000/applications/#{params[:app_name]}/namespaces/#{params[:namespace_name]}/configurations/latest"
     headers = {"Authorization" => cookies['token']}
     response = HTTParty.get(url, :headers => headers)
     response_body = JSON.parse(response.body)
@@ -68,16 +56,18 @@ class ConfigurationController < ApplicationController
   end
 
   def rollback
-    url = "http://localhost:8000/configuration/rollback"
+    url = "http://localhost:8000/applications/#{params[:app_name]}/namespaces/#{params[:namespace_name]}/configurations/rollback"
     headers = {"Authorization" => cookies['token']}
     body = {
-            "application_name" => "#{params[:app_name]}",
-            "namespace_name" => "#{params[:namespace_name]}",
             "version" => params['version'].to_i
             }
-    puts "HAHAHAHA#{body}"
     response = HTTParty.post(url, :headers => headers, :body => body.to_json)
-    # render :html response
+    json_response = JSON.parse(response.body)
+    if (json_response["status"] == 200)
+      redirect_to configurations_path(params[:app_name],params[:namespace_name])
+    else
+      redirect_to apps_path, danger:"Rollback Failed"
+    end
   end
 
 end

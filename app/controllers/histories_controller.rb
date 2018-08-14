@@ -6,10 +6,9 @@ class HistoriesController < ApplicationController
 
   def index
     headers = {"Authorization" => cookies['token']}
-    url = "http://localhost:8000/configuration/history/#{params[:app_name]}/#{params[:namespace_name]}"
+    url = "http://localhost:8000/applications/#{params[:app_name]}/namespaces/#{params[:namespace_name]}/histories"
     response = HTTParty.get(url, :headers => headers)
     @histories = JSON.parse(response.body)
-    # render html: @histories
   end
 
 end
